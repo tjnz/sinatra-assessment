@@ -1,18 +1,9 @@
-# Load path and gems/bundler
-$LOAD_PATH << File.expand_path(File.dirname(__FILE__))
 
-require "bundler"
-Bundler.require
+require './config/environment'
 
-# Local config
-require "find"
-
-%w{config/initializers lib}.each do |load_path|
-  Find.find(load_path) { |f|
-    require f unless f.match(/\/\..+$/) || File.directory?(f)
-  }
+if ActiveRecord::Migrator.needs_migration?
+  raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
 end
 
-# Load app
-require "sinatra_assessment"
-run SinatraAssessment
+use Rack::MethodOverride
+run ApplicationController

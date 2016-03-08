@@ -1,11 +1,21 @@
 source "https://rubygems.org/"
 
-# App Stack
-gem "sinatra", "~> 1.4"
 
+gem 'sinatra'
+gem 'activerecord', :require => 'active_record'
+gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
+gem 'rake'
+gem 'require_all'
+gem 'sqlite3'
+gem 'thin'
+gem 'shotgun'
+gem 'pry'
+gem 'bcrypt'
+gem "tux"
 
-group :development do
-  gem "rake", "~> 10.0"
-  gem "minitest", "~> 5.2"
-  gem "rack-test", "~> 0.6"
+group :test do
+  gem 'rspec'
+  gem 'capybara'
+  gem 'rack-test'
+  gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
 end
