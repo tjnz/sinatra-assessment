@@ -8,6 +8,7 @@ class ApplicationController < Sinatra::Base
   end
   
   get '/' do 
+  	@businesses = Business.all
   	erb :index
   end
   

@@ -1,12 +1,12 @@
 business_list = {
 	"Business 1 " => { 
-		:name => "Test Business 1", 
-		:username => "test", 
+		:name => "Test Web Dev Business", 
+		:username => "web", 
 		:password => "1"
 		},
 	"Business 2" => { 
-		:name => "Test Business 2", 
-		:username => "test", 
+		:name => "Test Design Business", 
+		:username => "design", 
 		:password => "1"
 	}
 }
@@ -48,11 +48,11 @@ end
 
 projects_list = {
 	"Project 1 " => { 
-		:name => "Empty Project 1",
+		:name => "Make a website",
 		:business_id => 1
 		},
 	"Project 2" => { 
-		:name => "Empty Project 2",
+		:name => "Do something really cool in no time",
 		:business_id => 2
 	}
 }
@@ -60,3 +60,17 @@ projects_list = {
 projects_list.each do |project, hash|
 	Project.create(hash)
 end
+
+b1 = Business.all.first
+b2 = Business.all.last
+
+p1 = b1.projects.first
+p2 = b2.projects.first
+
+p1.employees << b1.employees.first
+p1.supplies << b1.supplies.first
+p1.save
+
+p2.employees << b2.employees.first
+p2.supplies << b2.supplies.first
+p2.save
