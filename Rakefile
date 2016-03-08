@@ -1,9 +1,9 @@
-%w{ bundler find rake/testtask}.each { |lib| require lib }
 
-task :default => :spec
+ENV["SINATRA_ENV"] ||= "development"
 
-Rake::TestTask.new(:spec) do |t|
-  t.test_files = FileList['spec/*_spec.rb']
-end
+require_relative './config/environment'
+require 'sinatra/activerecord/rake'
 
 
+
+# Type `rake -T` on your command line to see the available rake tasks.
