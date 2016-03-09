@@ -1,5 +1,13 @@
 <% if logged_in? %>
-	<a href="/"> Home </a>
-	<a href="/"> My Business </a>
-	<a href="/"> Logout </a>
+<nav>
+	<ul class="nav nav-tabs">
+		<li><a href="/businesses"> Home </a></li>
+		<li><a href="/businesses/<%= current_user.id %>"> My Business </a></li>
+		<li><a href="/projects"> Projects </a></li>
+		<li><a href="/employees"> Employees </a></li>
+		<li><a href="/supplies"> Supplies </a></li>
+		<li><a href="/logout"> Logout </a></li>
+	</ul>
+</nav>
+
 <% end %>

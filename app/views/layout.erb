@@ -13,8 +13,13 @@
 
 	<div class="container">
 		<% if !logged_in? %>
-			<h1 class="text-center">Why don't you make your own business...</h1>
+			<h1 class="text-center">Why don't you make your own business...</h1><br><br>
 		<% end %>
+	 <% if !@error_message.nil? %>
+	    <div class="alert alert-warning">
+	      <%= @error_message %>
+	    </div>
+    <% end %>
 		<%= yield %>
 	
 	</div>

@@ -4,11 +4,11 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "sinatra-secret"
+    set :session_secret, "sinatra-secrets"
   end
   
   get '/' do 
-  	@businesses = Business.all
+  	@businesses = Business.all[0..1]
   	erb :index
   end
   
@@ -16,9 +16,21 @@ class ApplicationController < Sinatra::Base
   	if logged_in? 
   		redirect '/businesses'
   	else
-			erb :'businesses/new'
+			erb :'/businesses/new'
 		end
 	end
+  
+  post '/signup' do 
+    user = Business.new(:name => params[:name], 
+                            :username => params[:username], 
+                            :password => params[:password])
+    if user.save
+      session[:user_id] = user.id
+      redirect '/businesses'
+    else
+      redirect '/signup'
+    end
+  end
   
   get '/login' do 
   	if logged_in?
@@ -38,14 +50,29 @@ class ApplicationController < Sinatra::Base
   	end
   end
   
+  get '/logout' do 
+    if logged_in? 
+      session.clear
+      redirect '/login'
+    else
+      redirect '/'
+    end
+  end
+  
   helpers do 
   	def logged_in?
   		!!session[:user_id]
   	end
   	
   	def current_user
-  		Business.find([:user_id])
+  		Business.find(session[:user_id])
   	end
+    
+    def valid_params?(params)
+      params.all? do |key, value|
+        value.length > 0
+      end
+    end
   	
   end
   

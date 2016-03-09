@@ -1,0 +1,24 @@
+<h1>All Businesses:</h1>
+	<% @businesses.each do |business| %>
+	<div class="panel panel-default">
+	<a href="businesses/<%= business.id%>">
+		<div class="panel-body <%= 'text-success' if current_user == business %>">
+	 			<h2><%= "#{business.name}" %></h2>
+				<h3>Projects:</h3>
+				<% business.projects.each do |project| %>
+					<h3><%= project.name %></h3>
+					<h4>Employees: <% project.employees.each do |emp| %>
+							<%= "#{emp.name} " %>
+						<% end %>
+					</h4>
+					<h4>Supplies:
+						<% project.supplies.each do |sup| %>
+							<%= "#{sup.name} " %>
+						<% end %>
+					</h4>
+				<% end %>
+				</div>
+			</a>
+ 		</div>
+	
+	<% end %>
