@@ -6,4 +6,7 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use Rack::MethodOverride
+use BusinessController
+use EmployeeController
+use SupplyController
 run ApplicationController

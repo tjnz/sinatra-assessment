@@ -1,22 +1,25 @@
-<h1>Welcome to the business creator!</h1>
-<hr>
-<h2>Log in with the default businesses or create your own</h2>
-<hr>
-<% @businesses.each do |business| %>
-	<h2><%= "#{business.name} - Username: #{business.username} PW: '1'" %></h2>
-	<h3>Projects:</h3>
-	<% business.projects.each do |project| %>
-		<h3><%= project.name %></h3>
-		<h4>Employees: 
-			<% project.employees.each do |emp| %>
-				<%= "#{emp.name} " %>
+
+	<% @businesses.each do |business| %>
+	<div class="panel panel-default">
+	<div class="panel-body">
+ 			<h2><%= "#{business.name} - Username: #{business.username} PW: '1'" %></h2>
+			<h3>Projects:</h3>
+			<% business.projects.each do |project| %>
+				<h3><%= project.name %></h3>
+				<h4>Employees: <% project.employees.each do |emp| %>
+						<%= "#{emp.name} " %>
+					<% end %>
+				</h4>
+				<h4>Supplies:
+					<% project.supplies.each do |sup| %>
+						<%= "#{sup.name} " %>
+					<% end %>
+				</h4>
 			<% end %>
-		</h4>
-		<h4>Supplies:
-			<% project.supplies.each do |sup| %>
-				<%= "#{sup.name} " %>
-			<% end %>
-		</h4>
+			</div>
+ 		</div>
+	
 	<% end %>
-	<hr>
-<% end %>
+
+ </table>
+ 	<%= erb :'layouts/_footer' %>

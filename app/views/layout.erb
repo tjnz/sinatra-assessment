@@ -2,9 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+   <title>Business Maker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body>
-  <%= yield %>
+	<nav>
+		 <%= erb :'layouts/_header' %>
+	</nav>
+	
+
+	<div class="container">
+		<% if !logged_in? %>
+			<h1 class="text-center">Why don't you make your own business...</h1>
+		<% end %>
+		<%= yield %>
+	
+	</div>
+  
+ 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>
