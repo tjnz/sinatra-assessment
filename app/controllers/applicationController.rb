@@ -36,6 +36,7 @@ class ApplicationController < Sinatra::Base
   	if logged_in?
   		redirect '/businesses'
   	else
+      @error_message = params[:error]
   		erb :'/businesses/login'
   	end
   end
@@ -60,6 +61,13 @@ class ApplicationController < Sinatra::Base
   end
   
   helpers do 
+    
+    def redirect_if_not_logged_in
+      if !logged_in?
+        redirect "/login?error=You have to be logged in to do that"
+      end
+    end
+    
   	def logged_in?
   		!!session[:user_id]
   	end

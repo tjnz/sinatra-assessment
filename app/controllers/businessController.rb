@@ -1,21 +1,25 @@
 class BusinessController < ApplicationController
 	
 	get '/businesses' do 
+		redirect_if_not_logged_in
 		@businesses = Business.all.reverse
 		erb :'/businesses/index'
 	end
 	
 	get '/businesses/:id' do 
+		redirect_if_not_logged_in
 		@business = Business.find(params[:id])
 		erb :'businesses/show'
 	end
 
 	get '/businesses/:id/edit' do 
+		redirect_if_not_logged_in
 		@business = Business.find(params[:id])
 		erb :'businesses/edit'
 	end
 	
 	patch '/businesses/:id/edit' do 
+		redirect_if_not_logged_in
 		business = Business.find(params[:id])
 		binding.pry
 		if valid_params?({:name => params[:name], :username => params[:username]})

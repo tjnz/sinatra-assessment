@@ -6,15 +6,11 @@
 			<h3>Projects:</h3>
 			<% business.projects.each do |project| %>
 				<h3><%= project.name %></h3>
-				<h4>Employees: <% project.employees.each do |emp| %>
-						<%= "#{emp.name} " %>
-					<% end %>
-				</h4>
-				<h4>Supplies:
-					<% project.supplies.each do |sup| %>
-						<%= "#{sup.name} " %>
-					<% end %>
-				</h4>
+				<h4>Employees: <%= project.employees.map {|emp| emp.name}.join(', ') %>
+							
+					</h4>
+				<h4>Supplies: <%= project.supplies.map {|sup| sup.name}.join(', ') %>
+					</h4>
 			<% end %>
 			</div>
  		</div>

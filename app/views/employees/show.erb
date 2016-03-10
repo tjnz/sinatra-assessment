@@ -1,7 +1,0 @@
-
-			<h3><%= @employee.name %></h3>
-					<a href="/employees/<%=@employee.id %>/edit"><button class="btn btn-info">Edit</button></a>
-					<form action="/employees/<%=@employee.id %>" method="post" style="display: inline" class="col-md-offset-10">
-					<input type="hidden" name="_method" value="delete">
-						<button type="submit" class="btn btn-danger">Delete</button>
-					</form>
