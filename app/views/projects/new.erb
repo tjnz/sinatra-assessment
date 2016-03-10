@@ -1,0 +1,52 @@
+<h2>Create a new project</h2>
+<br><br>
+<form action="/projects/new" method="post" class="form-horizontal">
+	
+	<div class="form-group">
+    <label for="name" class="col-sm-2 control-label">Project Name:</label>
+    <div class="col-sm-10">
+      <input type="text" name="name" class="form-control" id="name" placeholder="Enter your projects's name">
+    </div>
+  </div>
+  
+  <div class="from-group">
+  <label for="cb" class="col-sm-2 control-label">Employees:</label>
+  	<div class="col-sm-10" id="cb"  style="display: block;">
+  		<% @business.employees.each do |employee| %>
+  		<input type="checkbox" name="employees[]" value="<%=employee.id%>" ><%=employee.name%>
+  		<%end%>
+  	</div>
+  </div>
+  <br><br>
+  
+  <div class="form-group">
+    <label for="new_employee" class="col-sm-2 control-label">Create Employee:</label>
+    <div class="col-sm-10">
+      <input type="text" name="employee" class="form-control" id="new_employee" placeholder="Enter your employee's name">
+    </div>
+  </div>
+  
+   <div class="from-group">
+  <label for="cb" class="col-sm-2 control-label">Supplies:</label>
+  	<div class="col-sm-10" id="cb"  style="display: block;">
+  		<% @business.supplies.each do |supply| %>
+  		<input type="checkbox" name="supplies[]" value="<%=supply.id%>" ><%=supply.name%>
+  		<%end%>
+  	</div>
+  </div>
+  <br><br>
+  
+  <div class="form-group">
+    <label for="new_supply" class="col-sm-2 control-label">Create Supply:</label>
+    <div class="col-sm-10">
+      <input type="text" name="supply" class="form-control" id="new_supply" placeholder="Enter your supply's name">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary">Create Project</button>
+    </div>
+  </div>
+	
+</form>

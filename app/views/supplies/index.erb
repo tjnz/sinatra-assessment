@@ -1,0 +1,16 @@
+<h2><%= @business.name %></h2>
+<h3>Supplies</h3>
+<a href="/supplies/new">New Supply</a>
+<br><br>
+<% @supplies.each do |supply| %>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<h3><%= supply.name %></h3>
+					<a href="/supplies/<%=supply.id %>/edit"><button class="btn btn-info">Edit</button></a>
+					<form action="/supplies/<%=supply.id %>" method="post" style="display: inline" class="col-md-offset-10">
+					<input type="hidden" name="_method" value="delete">
+						<button type="submit" class="btn btn-danger">Delete</button>
+					</form>
+		</div>
+	</div>
+	<% end %>

@@ -1,21 +1,37 @@
-<h2><%= @business.name %></h2>
-<% if @business == current_user %>
-	<!-- <a href="/businesses/<%=@business.id%>/edit"> Edit </a> -->
-	<h3>Projects:</h3><a href="/projects/new">New Project</a>
-<% else %>
-	<h3>Projects:</h3>
-<% end %>
+<h2><%= @business.name %> Summary:</h2>
 
-<% @business.projects.each do |project| %>
-	<h3><%= project.name %></h3>
-	<h4>Employees: <% project.employees.each do |emp| %>
-			<%= "#{emp.name} " %>
-		<% end %>
-	</h4>
-	<h4>Supplies:
-		<% project.supplies.each do |sup| %>
-			<%= "#{sup.name} " %>
-		<% end %>
-	</h4>
-<% end %>
+	<div class="panel panel-default">
+		<div class="panel-heading">Projects: <%=@business.projects.length%></div>
+		
+			<div class="panel-body">
+				<% @business.projects.each do |project| %>
+					<p><%= project.name %></p>
+					<% end %>
+			</div>
+	</div>
+
+
+	<div class="panel panel-default">
+		<div class="panel-heading">Employees: <%=@business.employees.length%></div>
+		
+			<div class="panel-body">
+				<% @business.employees.each do |employee| %>
+					<p><%= employee.name %></p>
+					<% end %>
+		</div>
+	</div>
+
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">Supplies: <%=@business.supplies.length%></div>
+		
+			<div class="panel-body">
+				<% @business.supplies.each do |supply| %>
+					<p><%= supply.name %></p>
+					<% end %>
+		</div>
+	</div>
+
+
+
 			

@@ -1,0 +1,21 @@
+<h2><%= @business.name %></h2>
+<h3>Projects</h3>
+<a href="/projects/new">New Project</a>
+<br><br>
+<% @projects.each do |project| %>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<h3><%= project.name %></h3>
+					<h4>Employees: <%= project.employees.map {|emp| emp.name}.join(', ') %>
+							
+					</h4>
+					<h4>Supplies: <%= project.supplies.map {|sup| sup.name}.join(', ') %>
+					</h4>
+					<a href="/projects/<%=project.id %>/edit"><button class="btn btn-info">Edit</button></a>
+					<form action="/projects/<%=project.id %>" method="post" style="display: inline" class="col-md-offset-10">
+					<input type="hidden" name="_method" value="delete">
+						<button type="submit" class="btn btn-danger">Delete</button>
+					</form>
+		</div>
+	</div>
+	<% end %>
