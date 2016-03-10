@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
   
   get '/signup' do 
   	if logged_in? 
-  		redirect '/businesses'
+  		redirect "/businesses/#{current_user.id}"
   	else
 			erb :'/businesses/new'
 		end
@@ -34,7 +34,7 @@ class ApplicationController < Sinatra::Base
   
   get '/login' do 
   	if logged_in?
-  		redirect '/businesses'
+  		redirect "/businesses/#{current_user.id}"
   	else
       @error_message = params[:error]
   		erb :'/businesses/login'
@@ -45,7 +45,7 @@ class ApplicationController < Sinatra::Base
   	user = Business.find_by(:username => params[:username])
   	if user && user.authenticate(params[:password])
   		session[:user_id] = user.id
-  		redirect '/businesses'
+  		redirect "/businesses/#{current_user.id}"
   	else
   		redirect '/login'
   	end
